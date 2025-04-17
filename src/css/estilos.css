@@ -5,12 +5,13 @@ body {
   align-items: center;
   height: 100vh;
   justify-content: center;
+  overflow-x: hidden; /* Impede o scroll horizontal */
 }
 
 .container {
   background-color: #1f2949;
   color: #ffffff;
-  max-width: 330px;
+  max-width: 100%; /* Garante que o container não ultrapasse a largura da tela */
   text-align: center;
   background-image: url("../imagens/background.png");
   background-size: cover;
@@ -18,6 +19,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.1) 0 10px 50px;
   position: relative; 
   overflow: hidden; 
+  box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho */
 }
 
 .busca {
@@ -218,4 +220,115 @@ body {
 .previsao-reduzida .previsao-item img {
   width: 40px;
   height: 40px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 0 10px; /* Adiciona margem para evitar que o conteúdo encoste nas bordas */
+  }
+
+  .previsao-reduzida {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .previsao-reduzida .previsao-item {
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .previsao-reduzida .previsao-item img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Estilos para telas pequenas (smartphones) */
+@media (max-width: 480px) {
+  .container {
+    margin: 0 10px;
+    padding: 10px;
+  }
+
+  .informacao-principal .temperatura {
+    font-size: 48px;
+  }
+
+  .informacao-principal h1 {
+    font-size: 16px;
+  }
+
+  .informacao-principal .condicao {
+    font-size: 18px;
+  }
+
+  .btn-localizacao {
+    font-size: 12px;
+    padding: 15px;
+  }
+
+  .footer {
+    font-size: 9px;
+  }
+}
+
+/* Estilos para tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .informacao-principal .temperatura {
+    font-size: 56px;
+  }
+
+  .informacao-principal h1 {
+    font-size: 18px;
+  }
+
+  .informacao-principal .condicao {
+    font-size: 20px;
+  }
+
+  .btn-localizacao {
+    font-size: 14px;
+    padding: 18px;
+  }
+
+  .footer {
+    font-size: 10px;
+  }
+}
+
+/* Estilos para telas grandes (desktops) */
+@media (min-width: 769px) {
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .informacao-principal .temperatura {
+    font-size: 68px;
+  }
+
+  .informacao-principal h1 {
+    font-size: 20px;
+  }
+
+  .informacao-principal .condicao {
+    font-size: 22px;
+  }
+
+  .btn-localizacao {
+    font-size: 16px;
+    padding: 20px;
+  }
+
+  .footer {
+    font-size: 11px;
+  }
 }
