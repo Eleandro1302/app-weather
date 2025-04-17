@@ -20,13 +20,15 @@ This is a weather forecast application that provides real-time weather informati
 
 ## How to Use
 
-1. **Search by City**:
+1. **Access the Application**:
+   - Visit the project site: [Weather Forecast App](https://eleandro1302.github.io/app-weather/).
+2. **Search by City**:
    - Enter the name of a city in the search field and click the magnifying glass to view the weather forecast.
-2. **Use Geolocation**:
+3. **Use Geolocation**:
    - Click the "Minha Localização" button to fetch weather data based on your current location.
-3. **Dynamic Suggestions**:
+4. **Dynamic Suggestions**:
    - Start typing a city name in the search field to see suggestions for matching cities.
-4. **View Weather Details**:
+5. **View Weather Details**:
    - The app displays temperature, weather conditions, humidity, wind speed, air quality, and weather alerts.
 
 ## Screenshot
