@@ -12,10 +12,12 @@ botaoDeBusca.addEventListener("click", async () => {
 
   try {
     const dados = await buscarDadosDaCidade(cidade);
+    const previsao = await buscarPrevisao3Dias(cidade);
+
     if (dados) {
       preencherDadosNaTela(dados, cidade);
+      preencherPrevisao3Dias(previsao);
 
-      
       const listaSugestoes = document.getElementById("lista-sugestoes");
       listaSugestoes.innerHTML = "";
       listaSugestoes.style.display = "none";
@@ -69,9 +71,11 @@ botaoLocalizacao.addEventListener("click", async () => {
         }
 
         const dados = await resposta.json();
-        preencherDadosNaTela(dados, dados.location.name);
+        const previsao = await buscarPrevisao3Dias(dados.location.name);
 
-        
+        preencherDadosNaTela(dados, dados.location.name);
+        preencherPrevisao3Dias(previsao);
+
         const listaSugestoes = document.getElementById("lista-sugestoes");
         listaSugestoes.innerHTML = "";
         listaSugestoes.style.display = "none";
@@ -101,6 +105,24 @@ async function buscarDadosDaCidade(cidade) {
     return dados;
   } catch (error) {
     console.error("Erro na requisição:", error);
+    return null;
+  }
+}
+
+async function buscarPrevisao3Dias(cidade) {
+  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${chaveDaApi}&q=${cidade}&days=3&lang=${lang}`;
+  
+  try {
+    const resposta = await fetch(apiUrl);
+
+    if (!resposta.ok) {
+      throw new Error(`HTTP error! status: ${resposta.status}`);
+    }
+
+    const dados = await resposta.json();
+    return dados.forecast.forecastday;
+  } catch (error) {
+    console.error("Erro ao buscar previsão de 3 dias:", error);
     return null;
   }
 }
@@ -181,4 +203,35 @@ function preencherDadosNaTela(dados, cidade) {
   document.getElementById("alertas-climaticos").textContent = alertasClimaticos;
   document.getElementById("qualidade-ar").textContent = qualidadeAr;
 
+}
+
+function preencherPrevisao3Dias(previsao) {
+  const containerPrevisao = document.getElementById("previsao-3-dias");
+  containerPrevisao.innerHTML = ""; // Limpar previsões anteriores
+
+  if (!previsao || previsao.length === 0) {
+    containerPrevisao.textContent = lang === "pt" ? "Previsão indisponível." : "Forecast unavailable.";
+    return;
+  }
+
+  previsao.forEach((dia) => {
+    const item = document.createElement("div");
+    item.className = "previsao-item";
+
+    const data = new Date(dia.date).toLocaleDateString(lang, { weekday: "long", day: "numeric", month: "short" });
+    const condicao = dia.day.condition.text;
+    const icone = dia.day.condition.icon;
+    const tempMax = Math.round(dia.day.maxtemp_c);
+    const tempMin = Math.round(dia.day.mintemp_c);
+
+    item.innerHTML = `
+      <p>${data}</p>
+      <img src="https:${icone}" alt="${condicao}" />
+      <p>${lang === "pt" ? "Máx" : "Max"}: ${tempMax} ºC</p>
+      <p>${lang === "pt" ? "Mín" : "Min"}: ${tempMin} ºC</p>
+      <p>${condicao}</p>
+    `;
+
+    containerPrevisao.appendChild(item);
+  });
 }
