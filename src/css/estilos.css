@@ -1,5 +1,5 @@
 body {
-  background-color: #eeeeee;
+  background-color: #0c0b0b;
   font-family: "Red Hat Display", sans-serif;
   display: flex;
   align-items: center;
@@ -16,22 +16,27 @@ body {
   background-size: cover;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 10px 50px;
+  position: relative; 
+  overflow: hidden; 
 }
 
 .busca {
     padding: 20px;
-    display: flex;
-    justify-content: center;
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
     gap: 5px;
+    position: relative;
 }
 
 .busca input {
+    flex: 1; 
     background-color: #0a1435;
     padding: 10px;
     border-radius: 5px;
     border: none;
     outline: none;
-    color: #ffffff;
+    color: #f7f0f0;
     font-size: 16px;
     font-weight: 700;
     opacity: 0.8;
@@ -44,12 +49,49 @@ body {
     border-radius: 5px;
     padding: 5px 10px;
     opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .busca .lupa {
     width: 30px;
     padding: 6px;
     opacity: 0.8;
+}
+
+.sugestao-item {
+  background-color: #0a1435;
+  color: #ffffff;
+  padding: 10px;
+  padding: 1px;
+  margin-bottom: 5px;
+  border-radius: 0px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fcf6f6;
+  border-style: balloon;
+  border-width: 1px;
+  border-color: #0a1435;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+ 
+}
+
+.sugestao-item:hover {
+  background-color: #e0e0e0;
+}
+
+.sugestoes li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sugestoes li:hover {
+  background: #0a0a0a;
 }
 
 .informacao-principal {
@@ -83,4 +125,79 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
+}
+
+.informacao-secundaria .alertas-climaticos,
+.informacao-secundaria .qualidade-ar,
+.informacao-secundaria .dados-marinhos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.informacao-secundaria .qualidade-ar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.btn-localizacao {
+  background-color: #0a1435;
+  color: #ffffff;
+  cursor: pointer;
+  border: none;
+  border-radius: 100px;
+  padding: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 20px auto; 
+  width: calc(100% - 40px); 
+  text-align: center;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; 
+}
+
+.btn-localizacao:hover {
+  background-color: #1f2949;
+}
+
+.lupa-localizacao {
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+}
+
+.footer {
+  margin-top: 10px;
+  text-align: center;
+  color: #070606;
+  font-size: 11px;
+}
+
+.footer a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+  /* Desktop styles */
+  @media (min-width: 768px) {
+    .container {
+      max-width: 500px;
+    }
+  
+    .busca input {
+      font-size: 18px;
+    }
+  
+    .footer {
+      font-size: 10px;
+    }
 }
