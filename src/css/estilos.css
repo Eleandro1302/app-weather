@@ -11,7 +11,7 @@ body {
 .container {
   background-color: #1f2949;
   color: #ffffff;
-  max-width: 100%; /* Garante que o container não ultrapasse a largura da tela */
+  max-width: 100%; 
   text-align: center;
   background-image: url("../imagens/background.png");
   background-size: cover;
@@ -19,7 +19,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.1) 0 10px 50px;
   position: relative; 
   overflow: hidden; 
-  box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho */
+  box-sizing: border-box; 
 }
 
 .busca {
@@ -224,7 +224,7 @@ body {
 
 @media (max-width: 768px) {
   .container {
-    margin: 0 10px; /* Adiciona margem para evitar que o conteúdo encoste nas bordas */
+    margin: 0 10px; 
   }
 
   .previsao-reduzida {
