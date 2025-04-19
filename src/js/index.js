@@ -83,8 +83,9 @@ botaoLocalizacao.addEventListener("click", async () => {
         console.error("Erro ao buscar dados da localização:", error);
         alert(lang === "pt" ? "Não foi possível obter os dados da sua localização." : "Unable to fetch location data.");
       }
-    }, () => {
+    }, (error) => {
       alert(lang === "pt" ? "Não foi possível acessar sua localização." : "Unable to access your location.");
+      console.error("Erro ao acessar geolocalização:", error.message);
     });
   } else {
     alert(lang === "pt" ? "Geolocalização não é suportada neste navegador." : "Geolocation is not supported in this browser.");
@@ -110,7 +111,7 @@ async function buscarDadosDaCidade(cidade) {
 }
 
 async function buscarPrevisao3Dias(cidade) {
-  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${chaveDaApi}&q=${cidade}&days=3&lang=${lang}`;
+  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${chaveDaApi}&q=${cidade}&days=4&lang=${lang}`; // Changed days=3 to days=4
   
   try {
     const resposta = await fetch(apiUrl);
@@ -120,9 +121,9 @@ async function buscarPrevisao3Dias(cidade) {
     }
 
     const dados = await resposta.json();
-    return dados.forecast.forecastday;
+    return dados.forecast.forecastday; // Returns 4 days of forecast
   } catch (error) {
-    console.error("Erro ao buscar previsão de 3 dias:", error);
+    console.error("Erro ao buscar previsão de 4 dias:", error); // Updated error message
     return null;
   }
 }
@@ -207,14 +208,14 @@ function preencherDadosNaTela(dados, cidade) {
 
 function preencherPrevisao3Dias(previsao) {
   const containerPrevisao = document.getElementById("previsao-3-dias");
-  containerPrevisao.innerHTML = ""; // Limpar previsões anteriores
+  containerPrevisao.innerHTML = ""; 
 
-  if (!previsao || previsao.length === 0) {
+  if (!previsao || previsao.length <= 1) { 
     containerPrevisao.textContent = lang === "pt" ? "Previsão indisponível." : "Forecast unavailable.";
     return;
   }
 
-  previsao.forEach((dia) => {
+  previsao.slice(1).forEach((dia) => { 
     const item = document.createElement("div");
     item.className = "previsao-item";
 

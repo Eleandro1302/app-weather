@@ -3,15 +3,17 @@ body {
   font-family: "Red Hat Display", sans-serif;
   display: flex;
   align-items: center;
-  height: 100vh;
+  height: auto; 
+  min-height: 100vh; 
+  padding: 10px; 
   justify-content: center;
-  overflow-x: hidden; /* Impede o scroll horizontal */
+  overflow-x: hidden; 
 }
 
 .container {
   background-color: #1f2949;
   color: #ffffff;
-  max-width: 100%; /* Garante que o container não ultrapasse a largura da tela */
+  max-width: 100%; 
   text-align: center;
   background-image: url("../imagens/background.png");
   background-size: cover;
@@ -19,7 +21,11 @@ body {
   box-shadow: rgba(0, 0, 0, 0.1) 0 10px 50px;
   position: relative; 
   overflow: hidden; 
-  box-sizing: border-box; /* Inclui padding e border no cálculo do tamanho */
+  box-sizing: border-box; 
+  width: 100%; 
+  max-width: 500px; 
+  margin: 0 auto; 
+  padding: 20px; 
 }
 
 .busca {
@@ -190,7 +196,6 @@ body {
   text-decoration: underline;
 }
 
-/* Desktop styles */
 @media (min-width: 768px) {
   .container {
     max-width: 500px;
@@ -208,13 +213,19 @@ body {
 .previsao-reduzida {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin-top: 20px;
+  flex-wrap: wrap; 
+  gap: 5px; 
+  padding: 10px; 
 }
 
 .previsao-reduzida .previsao-item {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-align: center;
   width: 80px;
+  flex: 1 1 calc(33.33% - 20px); 
+  max-width: 120px; 
 }
 
 .previsao-reduzida .previsao-item img {
@@ -224,20 +235,23 @@ body {
 
 @media (max-width: 768px) {
   .container {
-    margin: 0 10px; /* Adiciona margem para evitar que o conteúdo encoste nas bordas */
+    margin: 0 10px; 
+    padding: 15px; 
   }
 
   .previsao-reduzida {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
+    justify-content: center; 
   }
 
   .previsao-reduzida .previsao-item {
     width: 100%;
     text-align: center;
     font-size: 0.9rem;
+    flex: 1 1 calc(50% - 10px); 
   }
 
   .previsao-reduzida .previsao-item img {
@@ -246,11 +260,10 @@ body {
   }
 }
 
-/* Estilos para telas pequenas (smartphones) */
 @media (max-width: 480px) {
   .container {
     margin: 0 10px;
-    padding: 10px;
+    padding: 10px; 
   }
 
   .informacao-principal .temperatura {
@@ -273,9 +286,17 @@ body {
   .footer {
     font-size: 9px;
   }
+
+  .previsao-reduzida .previsao-item {
+    flex: 1 1 100%; 
+  }
+
+  .previsao-reduzida {
+    gap: 4px; 
+  }
 }
 
-/* Estilos para tablets */
+
 @media (min-width: 481px) and (max-width: 768px) {
   .container {
     max-width: 90%;
@@ -304,7 +325,7 @@ body {
   }
 }
 
-/* Estilos para telas grandes (desktops) */
+
 @media (min-width: 769px) {
   .container {
     max-width: 500px;

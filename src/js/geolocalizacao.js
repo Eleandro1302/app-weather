@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const { latitude, longitude } = position.coords;
       try {
-        const apiUrl = `https://api.weatherapi.com/v1/current.json?key=./config.js&q=${latitude},${longitude}&alerts=yes&marine=yes`;
-        const resposta = await fetch(apiUrl);
+        const apiUrl = `https://api.weatherapi.com/v1/current.json?key=f5634233a92746cd8d7123816250303&q=${latitude},${longitude}&alerts=yes&marine=yes`; 
 
         if (!resposta.ok) {
           throw new Error(`HTTP error! status: ${resposta.status}`);
@@ -18,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
         console.error("Erro ao obter localização:", error);
       }
+    }, (error) => {
+      console.error("Erro ao acessar geolocalização:", error.message);
     });
   } else {
     console.error("Geolocalização não é suportada neste navegador.");
